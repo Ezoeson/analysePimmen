@@ -1,9 +1,9 @@
 {
     "id": "25CA56EE",
-    "path": "D:/analyseSocio_eco/app.R",
-    "project_path": "app.R",
+    "path": "D:/analyseSocio_eco/uuuuuu.R",
+    "project_path": "uuuuuu.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "3898699484",
     "contents": "",
     "dirty": false,
     "created": 1759817903219.0,
@@ -12,15 +12,16 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "17,53",
-        "scrollLine": "1"
+        "cursorPosition": "535,20",
+        "scrollLine": "0",
+        "docOutlineVisible": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1757631054,
+    "lastKnownWriteTime": 1759823620,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1757631054,
+    "last_content_update": 1759823620,
     "read_only": false,
     "read_only_alternatives": []
 }
