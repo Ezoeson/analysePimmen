@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MD_Metadata xmlns="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<language>
+		<LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+	</language>
+	<characterSet>
+		<MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+	</characterSet>
+	<hierarchyLevel>
+		<MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+	</hierarchyLevel>
+	<hierarchyLevelName>
+		<gco:CharacterString>dataset</gco:CharacterString>
+	</hierarchyLevelName>
+	<contact>
+		<CI_ResponsibleParty>
+			<individualName>
+				<gco:CharacterString>SALB programme</gco:CharacterString>
+			</individualName>
+			<organisationName>
+				<gco:CharacterString>United Nations</gco:CharacterString>
+			</organisationName>
+			<positionName>
+				<gco:CharacterString>Manager</gco:CharacterString>
+			</positionName>
+			<role>
+				<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="distributor" codeSpace="ISOTC211/19115">distributor</CI_RoleCode>
+			</role>
+		</CI_ResponsibleParty>
+	</contact>
+	<dateStamp>
+		<gco:Date>2022-05-05</gco:Date>
+	</dateStamp>
+	<metadataStandardName>
+		<gco:CharacterString>ISO 19139 Geographic Information - Metadata - Implementation Specification</gco:CharacterString>
+	</metadataStandardName>
+	<metadataStandardVersion>
+		<gco:CharacterString>2007</gco:CharacterString>
+	</metadataStandardVersion>
+	<spatialRepresentationInfo>
+		<MD_VectorSpatialRepresentation>
+			<topologyLevel>
+				<MD_TopologyLevelCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_TopologyLevelCode" codeListValue="geometryOnly" codeSpace="ISOTC211/19115">geometryOnly</MD_TopologyLevelCode>
+			</topologyLevel>
+			<geometricObjects>
+				<MD_GeometricObjects>
+					<geometricObjectType>
+						<MD_GeometricObjectTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_GeometricObjectTypeCode" codeListValue="composite" codeSpace="ISOTC211/19115">composite</MD_GeometricObjectTypeCode>
+					</geometricObjectType>
+					<geometricObjectCount>
+						<gco:Integer>58</gco:Integer>
+					</geometricObjectCount>
+				</MD_GeometricObjects>
+			</geometricObjects>
+		</MD_VectorSpatialRepresentation>
+	</spatialRepresentationInfo>
+	<referenceSystemInfo>
+		<MD_ReferenceSystem>
+			<referenceSystemIdentifier>
+				<RS_Identifier>
+					<code>
+						<gco:CharacterString>4326</gco:CharacterString>
+					</code>
+					<codeSpace>
+						<gco:CharacterString>EPSG</gco:CharacterString>
+					</codeSpace>
+					<version>
+						<gco:CharacterString>9.6.3(10.8.0)</gco:CharacterString>
+					</version>
+				</RS_Identifier>
+			</referenceSystemIdentifier>
+		</MD_ReferenceSystem>
+	</referenceSystemInfo>
+	<identificationInfo>
+		<MD_DataIdentification>
+			<citation>
+				<CI_Citation>
+					<title>
+						<gco:CharacterString>Madagascar, SALB, United Nations</gco:CharacterString>
+					</title>
+					<date>
+						<CI_Date>
+							<date>
+								<gco:Date>2022-05-05</gco:Date>
+							</date>
+							<dateType>
+								<CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation" codeSpace="ISOTC211/19115">creation</CI_DateTypeCode>
+							</dateType>
+						</CI_Date>
+					</date>
+					<presentationForm>
+						<CI_PresentationFormCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_PresentationFormCode" codeListValue="mapDigital" codeSpace="ISOTC211/19115">mapDigital</CI_PresentationFormCode>
+					</presentationForm>
+				</CI_Citation>
+			</citation>
+			<abstract>
+				<gco:CharacterString>Administrative units and boundaries of Madagascar at first and second level below national level. Period of validity of the geospatial data is from 2000-01-01 to 2004-04-16 (see Historical table for last verification date). The dataset is suitable at the scale of 1:1 million.</gco:CharacterString>
+			</abstract>
+			<purpose>
+				<gco:CharacterString>Administrative units and boundaries of Madagascar (current).</gco:CharacterString>
+			</purpose>
+			<credit>
+				<gco:CharacterString>Institut Géographique et Hydrographique National (Foiben-Taosarintanin'I Madagasikara), Madagascar.SALB programme, United Nations.
+                </gco:CharacterString>
+			</credit>
+			<pointOfContact>
+				<CI_ResponsibleParty>
+					<individualName>
+						<gco:CharacterString>SALB programme</gco:CharacterString>
+					</individualName>
+					<organisationName>
+						<gco:CharacterString>United Nations</gco:CharacterString>
+					</organisationName>
+					<positionName>
+						<gco:CharacterString>Manager</gco:CharacterString>
+					</positionName>
+					<role>
+						<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="distributor" codeSpace="ISOTC211/19115">distributor</CI_RoleCode>
+					</role>
+				</CI_ResponsibleParty>
+			</pointOfContact>
+			<resourceMaintenance>
+				<MD_MaintenanceInformation>
+					<maintenanceAndUpdateFrequency>
+						<MD_MaintenanceFrequencyCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="asNeeded" codeSpace="ISOTC211/19115">asNeeded</MD_MaintenanceFrequencyCode>
+					</maintenanceAndUpdateFrequency>
+				</MD_MaintenanceInformation>
+			</resourceMaintenance>
+			<descriptiveKeywords>
+				<MD_Keywords>
+					<keyword>
+						<gco:CharacterString>United Nations, Madagascar</gco:CharacterString>
+					</keyword>
+					<type>
+						<MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</MD_KeywordTypeCode>
+					</type>
+				</MD_Keywords>
+			</descriptiveKeywords>
+			<descriptiveKeywords>
+				<MD_Keywords>
+					<keyword>
+						<gco:CharacterString>Administrative units</gco:CharacterString>
+					</keyword>
+					<keyword>
+						<gco:CharacterString>Boundaries</gco:CharacterString>
+					</keyword>
+					<keyword>
+						<gco:CharacterString>SALB programme</gco:CharacterString>
+					</keyword>
+					<keyword>
+						<gco:CharacterString>Geospatial data</gco:CharacterString>
+					</keyword>
+				</MD_Keywords>
+			</descriptiveKeywords>
+			<descriptiveKeywords>
+				<MD_Keywords>
+					<keyword>
+						<gco:CharacterString>Downloadable Data</gco:CharacterString>
+					</keyword>
+					<thesaurusName uuidref="723f6998-058e-11dc-8314-0800200c9a66"/>
+				</MD_Keywords>
+			</descriptiveKeywords>
+			<resourceConstraints>
+				<MD_Constraints>
+					<useLimitation>
+						<gco:CharacterString>The designations employed and the presentation of material on this geospatial data and related tables do not imply the expression of any opinion whatsoever on the part of the Secretariat of the United Nations concerning the legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries.</gco:CharacterString>
+					</useLimitation>
+				</MD_Constraints>
+			</resourceConstraints>
+			<spatialRepresentationType>
+				<MD_SpatialRepresentationTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" codeSpace="ISOTC211/19115">vector</MD_SpatialRepresentationTypeCode>
+			</spatialRepresentationType>
+			<spatialResolution>
+				<MD_Resolution>
+					<equivalentScale>
+						<MD_RepresentativeFraction>
+							<denominator>
+								<gco:Integer>1000000</gco:Integer>
+							</denominator>
+						</MD_RepresentativeFraction>
+					</equivalentScale>
+				</MD_Resolution>
+			</spatialResolution>
+			<language>
+				<LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+			</language>
+			<characterSet>
+				<MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+			</characterSet>
+			<topicCategory>
+				<MD_TopicCategoryCode>boundaries</MD_TopicCategoryCode>
+			</topicCategory>
+			<environmentDescription>
+				<gco:CharacterString>Version 6.2 (Build 9200) ; Esri ArcGIS 10.8.1.14362</gco:CharacterString>
+			</environmentDescription>
+			<extent>
+				<EX_Extent>
+					<geographicElement>
+						<EX_GeographicBoundingBox>
+							<extentTypeCode>
+								<gco:Boolean>true</gco:Boolean>
+							</extentTypeCode>
+							<westBoundLongitude>
+								<gco:Decimal>43.177194</gco:Decimal>
+							</westBoundLongitude>
+							<eastBoundLongitude>
+								<gco:Decimal>50.486059</gco:Decimal>
+							</eastBoundLongitude>
+							<southBoundLatitude>
+								<gco:Decimal>-25.606140</gco:Decimal>
+							</southBoundLatitude>
+							<northBoundLatitude>
+								<gco:Decimal>-11.952026</gco:Decimal>
+							</northBoundLatitude>
+						</EX_GeographicBoundingBox>
+					</geographicElement>
+				</EX_Extent>
+			</extent>
+		</MD_DataIdentification>
+	</identificationInfo>
+	<distributionInfo>
+		<MD_Distribution>
+			<distributionFormat>
+				<MD_Format>
+					<name>
+						<gco:CharacterString>Shapefile</gco:CharacterString>
+					</name>
+					<version>
+						<gco:CharacterString>Shapefile</gco:CharacterString>
+					</version>
+				</MD_Format>
+			</distributionFormat>
+			<transferOptions>
+				<MD_DigitalTransferOptions>
+					<transferSize>
+						<gco:Real>0.548</gco:Real>
+					</transferSize>
+				</MD_DigitalTransferOptions>
+			</transferOptions>
+		</MD_Distribution>
+	</distributionInfo>
+	<dataQualityInfo>
+		<DQ_DataQuality>
+			<scope>
+				<DQ_Scope>
+					<level>
+						<MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+					</level>
+				</DQ_Scope>
+			</scope>
+			<lineage>
+				<LI_Lineage>
+					<statement>
+						<gco:CharacterString>Institut Géographique et Hydrographique National (Foiben-Taosarintanin'I Madagasikara), Madagascar
+                        </gco:CharacterString>
+					</statement>
+				</LI_Lineage>
+			</lineage>
+		</DQ_DataQuality>
+	</dataQualityInfo>
+	<metadataConstraints>
+		<MD_Constraints>
+			<useLimitation>
+				<gco:CharacterString>The designations employed and the presentation of material on this geospatial data and related tables do not imply the expression of any opinion whatsoever on the part of the Secretariat of the United Nations concerning the legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries.</gco:CharacterString>
+			</useLimitation>
+		</MD_Constraints>
+	</metadataConstraints>
+	<metadataMaintenance>
+		<MD_MaintenanceInformation>
+			<maintenanceAndUpdateFrequency>
+				<MD_MaintenanceFrequencyCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="asNeeded" codeSpace="ISOTC211/19115">asNeeded</MD_MaintenanceFrequencyCode>
+			</maintenanceAndUpdateFrequency>
+		</MD_MaintenanceInformation>
+	</metadataMaintenance>
+	<Esri xmlns=""><CreaDate>20220628</CreaDate><CreaTime>10501200</CreaTime><ArcGISstyle>ISO 19139 Metadata Implementation Specification</ArcGISstyle><SyncOnce>FALSE</SyncOnce><DataProperties><itemProps><itemLocation><protocol Sync="TRUE">ArcSDE Connection</protocol><linkage Sync="TRUE">Server=DFS-AGS2-01.DPKO.UN.ORG,DFS-AGS2-02.DPKO.UN.ORG; Service=DSID=3b9552f9-43f7-410a-acb7-86cb750813d6; Database=db_c4f0x; User=hsu_g8ant; Version=sde.DEFAULT</linkage></itemLocation><itemName Sync="TRUE">BNDA_MDG_2000-01-01_2004-04-16</itemName><imsContentType Sync="TRUE">002</imsContentType><nativeExtBox><westBL Sync="TRUE">43.177194</westBL><eastBL Sync="TRUE">50.486059</eastBL><southBL Sync="TRUE">-25.606140</southBL><northBL Sync="TRUE">-11.952026</northBL><exTypeCode Sync="TRUE">1</exTypeCode></nativeExtBox><itemSize Sync="TRUE">9.663</itemSize></itemProps><coordRef><type Sync="TRUE">Geographic</type><geogcsn Sync="TRUE">GCS_WGS_1984</geogcsn><csUnits Sync="TRUE">Angular Unit: Degree (0.017453)</csUnits><peXml Sync="TRUE">&lt;GeographicCoordinateSystem xsi:type='typens:GeographicCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/10.8'&gt;&lt;WKT&gt;GEOGCS[&amp;quot;GCS_WGS_1984&amp;quot;,DATUM[&amp;quot;D_WGS_1984&amp;quot;,SPHEROID[&amp;quot;WGS_1984&amp;quot;,6378137.0,298.257223563]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433],AUTHORITY[&amp;quot;EPSG&amp;quot;,4326]]&lt;/WKT&gt;&lt;XOrigin&gt;-400&lt;/XOrigin&gt;&lt;YOrigin&gt;-400&lt;/YOrigin&gt;&lt;XYScale&gt;11258999068426.238&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;8.983152841195215e-09&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;LeftLongitude&gt;-180&lt;/LeftLongitude&gt;&lt;WKID&gt;4326&lt;/WKID&gt;&lt;LatestWKID&gt;4326&lt;/LatestWKID&gt;&lt;/GeographicCoordinateSystem&gt;</peXml></coordRef><lineage><Process ToolSource="c:\program files (x86)\arcgis\desktop10.3\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220323" Time="195251">CalculateField BNDA_MDG_2000-01-01_2004-04-16 "Iharana" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="190043">CalculateField BNDA_MDG_2007-07-25_2014-09-26 ADM1NM [ADM2NM] VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="190131">CalculateField BNDA_MDG_2007-07-25_2014-09-26 ADM2NM [ADM3NM] VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="190411">CalculateField BNDA_MDG_2007-07-25_2014-09-26 ADM1CD "MDG007" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="190505">CalculateField BNDA_MDG_2007-07-25_2014-09-26 ADM2CD "MDG007001" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="190842">CalculateField BNDA_MDG_2007-07-25_2014-09-26 ADM1CD "MDG008" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="191000">CalculateField BNDA_MDG_2007-07-25_2014-09-26 ADM2CD "MDG008001" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="193234">CalculateField BNDA_MDG_2007-07-25_2014-09-26 ADM1CD Mid( [ADM2CD] ,1,6 ) VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="214020">CalculateField BNDA_MDG_2000-01-01_2004-04-16 ADM1CD Mid( [ADM2CD],1,6 ) VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="214143">CalculateField BNDA_MDG_2000-01-01_2004-04-16 ADM1NM "Antananarivo" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="214227">CalculateField BNDA_MDG_2000-01-01_2004-04-16 ADM1NM "Antsiranana" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="214311">CalculateField BNDA_MDG_2000-01-01_2004-04-16 ADM1NM "Fianarantsoa" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="214358">CalculateField BNDA_MDG_2000-01-01_2004-04-16 ADM1NM "Mahajanga" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="214447">CalculateField BNDA_MDG_2000-01-01_2004-04-16 ADM1NM "Toamasina" VB #</Process><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20220505" Time="214527">CalculateField BNDA_MDG_2000-01-01_2004-04-16 ADM1NM "Toliara" VB #</Process></lineage><copyHistory><copy source="Y:\Projects\CORE\03_SALB\MDG\01_EDTS\BNDA_MDG_2000-01-01_2004-06-16\BNDA_MDG_2000-01-01_2004-04-16" dest="\\NYsv0287\cartogdata\Projects\CORE\03_SALB\MDG\02_PBLH\BNDA_MDG\BNDA_MDG_2000-01-01_2004-06-16\BNDA_MDG_2000-01-01_2004-04-16" date="20220506" time="09322300"></copy></copyHistory></DataProperties><SyncDate>20220506</SyncDate><SyncTime>11141600</SyncTime><ModDate>20220506</ModDate><ModTime>11141600</ModTime><ArcGISFormat>1.0</ArcGISFormat></Esri><dataIdInfo xmlns=""><envirDesc Sync="TRUE"> Version 6.2 (Build 9200) ; Esri ArcGIS 10.8.1.14362</envirDesc><dataLang><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></dataLang><idCitation><resTitle Sync="TRUE">BNDA_MDG_2000-01-01_2004-04-16</resTitle><presForm><PresFormCd value="005" Sync="TRUE"></PresFormCd></presForm></idCitation><spatRpType><SpatRepTypCd value="001" Sync="TRUE"></SpatRepTypCd></spatRpType><dataExt><geoEle><GeoBndBox esriExtentType="search"><exTypeCode Sync="TRUE">1</exTypeCode><westBL Sync="TRUE">43.177194</westBL><eastBL Sync="TRUE">50.486059</eastBL><northBL Sync="TRUE">-11.952026</northBL><southBL Sync="TRUE">-25.606140</southBL></GeoBndBox></geoEle></dataExt></dataIdInfo><mdLang xmlns=""><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></mdLang><mdChar xmlns=""><CharSetCd value="004" Sync="TRUE"></CharSetCd></mdChar><distInfo xmlns=""><distFormat><formatName Sync="TRUE">Shapefile</formatName></distFormat><distTranOps><transSize Sync="TRUE">9.663</transSize></distTranOps></distInfo><mdHrLv xmlns=""><ScopeCd value="005" Sync="TRUE"></ScopeCd></mdHrLv><mdHrLvName xmlns="" Sync="TRUE">dataset</mdHrLvName><refSysInfo xmlns=""><RefSystem><refSysID><identCode code="4326" Sync="TRUE"></identCode><idCodeSpace Sync="TRUE">EPSG</idCodeSpace><idVersion Sync="TRUE">6.14(3.0.1)</idVersion></refSysID></RefSystem></refSysInfo><spatRepInfo xmlns=""><VectSpatRep><geometObjs Name="BNDA_MDG_2000-01-01_2004-04-16"><geoObjTyp><GeoObjTypCd value="002" Sync="TRUE"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">111</geoObjCnt></geometObjs><topLvl><TopoLevCd value="001" Sync="TRUE"></TopoLevCd></topLvl></VectSpatRep></spatRepInfo><spdoinfo xmlns=""><ptvctinf><esriterm Name="BNDA_MDG_2000-01-01_2004-04-16"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom code="4" Sync="TRUE"></efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">111</efeacnt><spindex Sync="TRUE">TRUE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf></spdoinfo><eainfo xmlns=""><detailed Name="BNDA_MDG_2000-01-01_2004-04-16"><enttyp><enttypl Sync="TRUE">BNDA_MDG_2000-01-01_2004-04-16</enttypl><enttypt Sync="TRUE">Feature Class</enttypt><enttypc Sync="TRUE">111</enttypc></enttyp><attr><attrlabl Sync="TRUE">FID</attrlabl><attalias Sync="TRUE">FID</attalias><attrtype Sync="TRUE">OID</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Internal feature number.</attrdef><attrdefs Sync="TRUE">Esri</attrdefs><attrdomv><udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">Shape</attrlabl><attalias Sync="TRUE">Shape</attalias><attrtype Sync="TRUE">Geometry</attrtype><attwidth Sync="TRUE">0</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Feature geometry.</attrdef><attrdefs Sync="TRUE">Esri</attrdefs><attrdomv><udom Sync="TRUE">Coordinates defining the features.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">ISO3CD</attrlabl><attalias Sync="TRUE">ISO3CD</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">3</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">ADM1NM</attrlabl><attalias Sync="TRUE">ADM1NM</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">254</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">ADM2NM</attrlabl><attalias Sync="TRUE">ADM2NM</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">254</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">ADM1CD</attrlabl><attalias Sync="TRUE">ADM1CD</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">7</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">ADM2CD</attrlabl><attalias Sync="TRUE">ADM2CD</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">11</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">CTY_NM</attrlabl><attalias Sync="TRUE">CTY_NM</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">254</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr></detailed></eainfo><mdDateSt xmlns="" Sync="TRUE">20220506</mdDateSt></MD_Metadata>

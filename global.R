@@ -1,7 +1,3 @@
-# global.R
-# Ce fichier contient les chargements de bibliothèques, 
-# la connexion à la base de données et les variables globales
-
 # Chargement des bibliothèques
 library(shiny)
 library(ggplot2)
@@ -11,6 +7,15 @@ library(RPostgreSQL)
 library(forcats)
 library(pool)
 library(tidyr)
+library(sf)
+library(leaflet)
+library(readr)
+library(shinycssloaders)
+if(!require(shinyWidgets)) install.packages("shinyWidgets", repos = "http://cran.us.r-project.org")
+if(!require(shinydashboard)) install.packages("shinydashboard", repos = "http://cran.us.r-project.org")
+if(!require(shinythemes)) install.packages("shinythemes", repos = "http://cran.us.r-project.org")
+library(shinyBS)
+library(plotly)
 
 # Configuration de la connexion à la base de données
 pool <- dbPool(
