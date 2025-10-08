@@ -1,6 +1,7 @@
 server <- function(input, output, session) {
-  data_secteurs <- dbGetQuery(pool, "SELECT id, nom, nb_pecheur_secteur FROM secteurs ORDER BY nom")
-  data_especes <- dbGetQuery(pool, "SELECT id, nom FROM especes_peche ORDER BY nom")
+  data_secteurs <- dbGetQuery(con, "SELECT id, nom, nb_pecheur_secteur FROM secteurs ORDER BY nom")
+  data_especes <- dbGetQuery(con, "SELECT id, nom FROM especes_peche ORDER BY nom")
+  
   
   shape <- st_read("shape/BNDA_MDG_2000-01-01_2004-04-16.shp")
   shape_village <- st_read("shape/Village_CORECRABE/Village_CORECRABE.shp")
@@ -23,9 +24,31 @@ server <- function(input, output, session) {
     "SELECT *
        FROM repartition_par_secteur"
   )
-  firstData <- dbGetQuery(pool, firstQuery)
+  firstData <- dbGetQuery(con, firstQuery)
   selected_village <- reactiveVal(NULL)
   data_selected_village <- reactiveVal(firstData)
+  
+  observeEvent(input$indicateurs, {
+    # Code exécuté à chaque fois que la sélection change
+    if(input$indicateurs == "Démographie de la communauté des pêcheurs"){
+      query  <-  paste0(
+        "SELECT *
+          FROM repartition_par_secteur"
+      )
+    }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par filières halieutiques"){
+      query  <-  paste0(
+        "SELECT *
+          FROM repartition_par_filiere"
+      )
+    }
+    
+    data <- dbGetQuery(con, query)
+    if(!is.null(selected_village())){
+      data <- data %>%
+        filter(secteurid == selected_village())
+    }
+    data_selected_village(data)
+  })
   
   observeEvent(input$map_placeholder_marker_click, {
     click <- input$map_placeholder_marker_click
@@ -33,11 +56,19 @@ server <- function(input, output, session) {
     if (!is.null(click$id) && startsWith(click$id, "village_")) {
       village_clique <- sub("^village_", "", click$id)
       selected_village(village_clique)
-      query  <-  paste0(
-            "SELECT *
-       FROM repartition_par_secteur"
-      )
-      data <- dbGetQuery(pool, query)
+      if(input$indicateurs == "Démographie de la communauté des pêcheurs"){
+        query  <-  paste0(
+          "SELECT *
+          FROM repartition_par_secteur"
+        )
+      }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par filières halieutiques"){
+        query  <-  paste0(
+          "SELECT *
+          FROM repartition_par_filiere"
+        )
+      }
+      
+      data <- dbGetQuery(con, query)
       data <- data %>%
         filter(secteurid == village_clique)
       data_selected_village(data)
@@ -48,11 +79,18 @@ server <- function(input, output, session) {
   
   observeEvent(input$map_placeholder_shape_click, {
     click <- input$map_placeholder_shape_click
-    query  <-  paste0(
-      "SELECT *
-       FROM repartition_par_secteur"
-    )
-    data <- dbGetQuery(pool, query)
+    if(input$indicateurs == "Démographie de la communauté des pêcheurs"){
+      query  <-  paste0(
+        "SELECT *
+          FROM repartition_par_secteur"
+      )
+    }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par filières halieutiques"){
+      query  <-  paste0(
+        "SELECT *
+          FROM repartition_par_filiere"
+      )
+    }
+    data <- dbGetQuery(con, query)
     selected_village(NULL)
     data_selected_village(data)
   })
@@ -67,6 +105,10 @@ server <- function(input, output, session) {
       paste("Toutes les secteurs")
     }
     
+  })
+  
+  output$indicateurs <- renderText({
+      paste(input$indicateurs)
   })
   
   output$legende <- renderText({
@@ -93,33 +135,68 @@ server <- function(input, output, session) {
         )
       
       if(is.null(selected_village)){
-        data_avec_total <- data_avec_total %>%
-          summarise(
-            feminin = sum(feminin, na.rm = TRUE),
-            masculin = sum(masculin, na.rm = TRUE),
-            nb_pecheur_secteur = sum(nb_pecheur_secteur, na.rm = TRUE)
-          )
+        
+        if(input$indicateurs == "Démographie de la communauté des pêcheurs"){
+          data_avec_total <- data_avec_total %>%
+            summarise(
+              feminin = sum(feminin, na.rm = TRUE),
+              masculin = sum(masculin, na.rm = TRUE),
+              nb_pecheur_secteur = sum(nb_pecheur_secteur, na.rm = TRUE)
+            )
+        }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par filières halieutiques"){
+          data_avec_total <- data_avec_total %>%
+            summarise(
+              Chevaquine = sum(Chevaquine, na.rm = TRUE),
+              Crabe = sum(Crabe, na.rm = TRUE),
+              Crevette = sum(Crevette, na.rm = TRUE),
+              Gros_poisson = sum(Gros_poisson, na.rm = TRUE),
+              Petit_poisson = sum(Petit_poisson, na.rm = TRUE),
+              Poisson_courbine = sum(Poisson_courbine, na.rm = TRUE)
+            )
+        }
       }
-      data_avec_total <- data_avec_total %>%
+      if(input$indicateurs == "Démographie de la communauté des pêcheurs"){
+        data_avec_total <- data_avec_total %>%
         mutate(non_enquete = nb_pecheur_secteur - feminin - masculin)
+      
+        df_long <- data_avec_total %>%
+        select(feminin, masculin, non_enquete) %>%
+        pivot_longer(everything(), names_to = "categorie", values_to = "nombre")
+      }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par filières halieutiques"){
+        
+        df_long <- data_avec_total %>%
+          select(Chevaquine, Crabe, Crevette, Gros_poisson,Petit_poisson, Poisson_courbine) %>%
+          pivot_longer(everything(), names_to = "categorie", values_to = "nombre")
+      }
     
-    df_long <- data_avec_total %>%
-      select(feminin, masculin, non_enquete) %>%
-      pivot_longer(everything(), names_to = "categorie", values_to = "nombre")
+    plot_ly(
+      df_long,
+      labels = ~categorie,
+      values = ~nombre,
+      type = 'pie',
+      hoverinfo = 'label+value+percent',
+      marker = list(colors = c('#e887d4', '#2596be', '#eeeee4'))
+    ) %>%
+      layout(
+        showlegend = TRUE,
+        paper_bgcolor = "rgba(240, 248, 255, 1)",  # bleu très clair (canvas)
+        plot_bgcolor = "rgba(255, 255, 255, 0)", 
+        margin = list(
+          l = 40,  # left
+          r = 40,  # right
+          b = 40,  # bottom
+          t = 80,  # top
+          pad = 20 # (optionnel) espace interne
+        )
+      )
     
-    plot_ly(df_long, labels = ~categorie, values = ~nombre, type = 'pie',
-            textinfo = 'label+value+percent', # affiche le label et le pourcentage
-            hoverinfo = 'label+value+percent',
-            marker = list(colors = c('#e887d4', '#2596be', '#eeeee4'))) %>%
-      layout(title = "Répartition des pêcheurs enquêtés / non enquêtés",
-             showlegend = TRUE)
   })
   
   
   output$map_placeholder <- renderLeaflet({
     leaflet(shape_belon) %>%
       addTiles() %>% 
-      setView( lng = 44.5009372, lat = -19.7045099, zoom = 10 )%>%
+      setView( lng = 44.7009372, lat = -19.7045099, zoom = 10 )%>%
       addPolygons(
         color = "blue", 
         weight = 1, 
@@ -145,7 +222,7 @@ server <- function(input, output, session) {
   })
   
   # ===== NETTOYAGE =====
-  #onStop(function() {
-    #poolClose(pool)
-  #})
+  onStop(function() {
+    dbDisconnect(con)
+  })
 }
