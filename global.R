@@ -3,7 +3,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(DBI)
-library(RPostgreSQL)
+library(RPostgres)
 library(forcats)
 library(pool)
 library(tidyr)
@@ -19,7 +19,7 @@ library(plotly)
 
 # Configuration de la connexion à la base de données
 con <- dbConnect(
-  drv = PostgreSQL(),
+  drv = Postgres(),
   dbname = "crabe_socio_eco",
   host = "vps-a8d8821c.vps.ovh.net",
   port = 5433,

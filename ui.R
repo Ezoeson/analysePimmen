@@ -5,7 +5,7 @@ ui <- bootstrapPage(
     collapsible = TRUE,
     title = div(
       #actionButton("go_site", "Interface de saisie"),
-      img(src = "https://via.placeholder.com/30x30/007bff/ffffff?text=P", 
+      img(src = "https://www.transparentpng.com/thumb/database/v8s5DT-world-database-picture.png", 
           height = "30", 
           style = "margin-right:10px;"),
       "PIMMEN - Visualisation des données",
@@ -20,11 +20,16 @@ ui <- bootstrapPage(
     transition: none;
     pointer-events: auto;",
                       class = "panel panel-primary",
-                      top = 80, left = 50, width = '30%', fixed=TRUE,
+                      top = 150, left = 50, width = '50%', fixed=TRUE,draggable = TRUE,
                       div(class = "main-content",
                           h3(textOutput("indicateurs")),
                           h4(textOutput("text_village_selected")),
-                          shinycssloaders::withSpinner(plotlyOutput("result_map_click")),
+                          shinycssloaders::withSpinner(
+                            plotlyOutput("result_map_click", height = "600px"),
+                            type = 1,       # (optionnel) type de spinner
+                            color = "#2596be",
+                            color.background = "white"
+                          ),
                           p(textOutput("legende"))
                       )
         ),
