@@ -18,9 +18,10 @@ ui <- bootstrapPage(
                  absolutePanel(id = "controls", class = "panel panel-primary",
                                style = " border: none;box-shadow: none;
     transition: none;
-    pointer-events: auto;",
+    pointer-events: auto;
+    background-color: transparent;",
                                class = "panel panel-primary",
-                               top = 100, left = 50,height = "50%", width = '50%', fixed=TRUE,draggable = TRUE,
+                               top = 120, left = 50,height = "50%", width = '50%', fixed=TRUE,draggable = TRUE,
                                div(class = "main-content",
                                    h3(textOutput("indicateurs")),
                                    h4(textOutput("text_village_selected")),
