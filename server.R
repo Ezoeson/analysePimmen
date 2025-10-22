@@ -302,16 +302,6 @@ server <- function(input, output, session) {
   output$map_placeholder <- renderLeaflet({
     leaflet(shape_belon) %>%
       addTiles(group = "Vue Plan") %>%
-      addTiles(
-        urlTemplate = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-        attribution = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-        options = tileOptions(minZoom = 0, maxZoom = 20),
-        group = "Vue satellite"
-      ) %>%
-      addLayersControl(
-        baseGroups = c("Vue Plan", "Vue Satellite"),
-        options = layersControlOptions(collapsed = FALSE)
-      ) %>%
       setView( lng = 44.2009372, lat = -19.7045099, zoom = 10 )%>%
       addPolygons(
         color = "blue", 
