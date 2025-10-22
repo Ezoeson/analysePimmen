@@ -18,14 +18,16 @@ library(shinyBS)
 library(plotly)
 
 # Configuration de la connexion à la base de données
-con <- dbConnect(
-  drv = Postgres(),
+con <- dbPool(
+  drv = RPostgres::Postgres(),
   dbname = "crabe_socio_eco",
   host = "vps-a8d8821c.vps.ovh.net",
   port = 5433,
   user = "ezoeson",
   password = "Ezoeson123456"
 )
+
+
 
 linebreaks <- function(n){HTML(strrep(br(), n))}
 
