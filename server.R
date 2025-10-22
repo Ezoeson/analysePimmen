@@ -40,7 +40,13 @@ server <- function(input, output, session) {
         "SELECT *
           FROM repartition_par_filiere"
       )
+    }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
+      query  <-  paste0(
+        "SELECT *
+          FROM repartition_par_technique"
+      )
     }
+    
     
     data <- dbGetQuery(con, query)
     if(!is.null(selected_village())){
@@ -66,6 +72,11 @@ server <- function(input, output, session) {
           "SELECT *
           FROM repartition_par_filiere"
         )
+      }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
+        query  <-  paste0(
+          "SELECT *
+          FROM repartition_par_technique"
+        )
       }
       
       data <- dbGetQuery(con, query)
@@ -88,6 +99,11 @@ server <- function(input, output, session) {
       query  <-  paste0(
         "SELECT *
           FROM repartition_par_filiere"
+      )
+    }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
+      query  <-  paste0(
+        "SELECT *
+          FROM repartition_par_technique"
       )
     }
     data <- dbGetQuery(con, query)
@@ -123,6 +139,8 @@ server <- function(input, output, session) {
       paste(" La figure représente le nombre de pêcheurs de ", nom , " toutes filières confondues, ainsi que la proportion d'hommes et de femmes au sein de ces communautés de pêcheurs.")
     }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par filières halieutiques"){
       paste(" La figure représente la proportion de pêcheurs de ", nom , " impliqués dans chaque filière (Chevaquine, Crabe, Crevette, Gros poissons, Petit poissons ou Courbine) ")
+    }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
+      paste(" La figure représente la proportion de pêcheurs de ", nom , " impliqués dans chaque technique () ")
     }
     
     
@@ -145,6 +163,13 @@ server <- function(input, output, session) {
             `Petit poisson` = Petit_poisson,
             `Gros poisson` = Gros_poisson,
             `Poisson courbine` = Poisson_courbine
+          )
+      }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
+        data_avec_total <- data_avec_total %>%
+          rename(
+            `filet maillant` = filet_maillant,
+            `filet moustiquaire` = filet_moustiquaire,
+            `ligne à la main` = ligne_main
           )
       }
       
@@ -173,6 +198,23 @@ server <- function(input, output, session) {
                 nb_pecheur = sum(nb_pecheur_secteur, na.rm = TRUE)
             )
           )
+        }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
+          data_avec_total <- data_avec_total %>%
+            summarise(
+              data_avec_total <- data_avec_total %>%
+                summarise(
+                  `filet maillant` = sum(`filet maillant`, na.rm = TRUE),
+                  `filet moustiquaire` = sum(`filet moustiquaire`, na.rm = TRUE),
+                  `ligne à la main` = sum(`ligne à la main`, na.rm = TRUE),
+                  `palangre` = sum(`palangre`, na.rm = TRUE),
+                  `balance` = sum(`balance`, na.rm = TRUE),
+                  `crochet` = sum(`crochet`, na.rm = TRUE),
+                  `senne` = sum(`senne`, na.rm = TRUE),
+                  `raquette` = sum(`raquette`, na.rm = TRUE),
+                  `casier` = sum(`casier`, na.rm = TRUE),
+                  nb_pecheur = sum(nb_pecheur_secteur, na.rm = TRUE)
+                )
+            )
         }
       }
       if(input$indicateurs == "Démographie de la communauté des pêcheurs"){
@@ -186,6 +228,10 @@ server <- function(input, output, session) {
         
         df_long <- data_avec_total %>%
           select(Chevaquine, Crabe, Crevette, `Gros poisson`,`Petit poisson`, `Poisson courbine`) %>%
+          pivot_longer(everything(), names_to = "categorie", values_to = "nombre")
+      }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
+        df_long <- data_avec_total %>%
+          select(`filet maillant`, `filet moustiquaire`, `ligne à la main`, palangre,balance,crochet,senne,raquette,casier) %>%
           pivot_longer(everything(), names_to = "categorie", values_to = "nombre")
       }
     
@@ -214,21 +260,30 @@ server <- function(input, output, session) {
           )
         )
       }else{
+        if(input$indicateurs == "Proportions de pêcheurs enquêtés par filières halieutiques"){
+          xaxis<-"Filières"
+          color<-'#2596be'
+        }
+        else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
+          xaxis<-"Techniques"
+          color<-'#873e23'
+        }
         total <- data_avec_total$nb_pecheur
         df_long <- df_long %>%
           mutate(total_pecheur = total)
       plot_ly(
         df_long,
         x = ~categorie,      # catégories sur l’axe X
-        y = ~nombre,         # valeurs sur l’axe Y
+        y = ~nombre/total_pecheur*100,         # valeurs sur l’axe Y
         type = 'bar',
-        text = ~paste0(nombre, "/", total_pecheur),             # texte à afficher
-        textposition = 'outside'
+        text = ~paste0(nombre, " pêcheur(s)"),             # texte à afficher
+        textposition = 'outside',
+        marker = list(color = color)
         # type de graphique
       ) %>%
         layout(
-          xaxis = list(title = "Filières"),
-          yaxis = list(title = "Nombre de pêcheurs"),
+          xaxis = list(title = xaxis),
+          yaxis = list(title = "Proportion des pêcheurs (%)"),
           paper_bgcolor = "rgba(240, 248, 255, 1)",  # fond global
           plot_bgcolor = "rgba(255, 255, 255, 0)",   # fond du graphique
           margin = list(

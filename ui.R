@@ -38,7 +38,7 @@ ui <- bootstrapPage(
           fluidRow(
             column(12, linebreaks(1),
                    div(class = "parametres-container",
-                       shinyWidgets::pickerInput("indicateurs","Indicateurs à visualiser",choices = c("Démographie de la communauté des pêcheurs","Proportions de pêcheurs enquêtés par filières halieutiques"),multiple = FALSE,selected = "Démographie de la communauté des pêcheurs",width = '100%')
+                       shinyWidgets::pickerInput("indicateurs","Indicateurs à visualiser",choices = c("Démographie de la communauté des pêcheurs","Proportions de pêcheurs enquêtés par filières halieutiques","Proportions de pêcheurs enquêtés par techniques de pêches"),multiple = FALSE,selected = "Démographie de la communauté des pêcheurs",width = '100%')
                    )
             )
           )
