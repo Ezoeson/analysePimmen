@@ -358,8 +358,8 @@ server <- function(input, output, session) {
   
   # ===== NETTOYAGE =====
   onStop(function() {
-    if (DBI::dbIsValid(pool)) {
-      DBI::dbDisconnect(pool)
+    if (DBI::dbIsValid(con)) {
+      DBI::dbDisconnect(con)
     }
   })
 }
