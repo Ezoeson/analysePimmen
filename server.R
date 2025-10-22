@@ -235,7 +235,7 @@ server <- function(input, output, session) {
           pivot_longer(everything(), names_to = "categorie", values_to = "nombre")
       }
     
-      View(data_avec_total)
+      #View(data_avec_total)
       
       if(input$indicateurs == "Démographie de la communauté des pêcheurs"){
     
