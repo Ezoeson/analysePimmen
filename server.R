@@ -1,4 +1,25 @@
 server <- function(input, output, session) {
+  accesAutorise <- reactiveVal(FALSE)
+  
+  observe({
+    query <- parseQueryString(session$clientData$url_search)
+    userId <- query$token
+    
+    if (is.null(userId)) {
+      accesAutorise(FALSE)
+      return()
+    }
+    
+    user <- dbGetQuery(con, paste0(
+      'SELECT * FROM "Compte" WHERE "clerkUserId" = \'', userId, '\''
+    ))
+    if (nrow(user) < 1) {
+      accesAutorise(FALSE)
+      return()
+    }
+    accesAutorise(TRUE)
+  })
+  
   data_secteurs <- dbGetQuery(con, "SELECT id, nom, nb_pecheur_secteur FROM secteurs ORDER BY nom")
   data_especes <- dbGetQuery(con, "SELECT id, nom FROM especes_peche ORDER BY nom")
   
@@ -45,6 +66,11 @@ server <- function(input, output, session) {
         "SELECT *
           FROM repartition_par_technique"
       )
+    }else if(input$indicateurs == "Autres ressources de mangrove exploitées"){
+      query  <-  paste0(
+        "SELECT *
+          FROM repartition_par_ressources_mangrove"
+      )
     }
     
     
@@ -77,14 +103,17 @@ server <- function(input, output, session) {
           "SELECT *
           FROM repartition_par_technique"
         )
+      }else if(input$indicateurs == "Autres ressources de mangrove exploitées"){
+        query  <-  paste0(
+          "SELECT *
+          FROM repartition_par_ressources_mangrove"
+        )
       }
       
       data <- dbGetQuery(con, query)
       data <- data %>%
         filter(secteurid == village_clique)
       data_selected_village(data)
-      #View(data_selected_village())
-      #print(paste("Village cliqué :", village_clique))
     }
   })
   
@@ -105,6 +134,11 @@ server <- function(input, output, session) {
         "SELECT *
           FROM repartition_par_technique"
       )
+    }else if(input$indicateurs == "Autres ressources de mangrove exploitées"){
+      query  <-  paste0(
+        "SELECT *
+          FROM repartition_par_ressources_mangrove"
+      )
     }
     data <- dbGetQuery(con, query)
     selected_village(NULL)
@@ -112,6 +146,7 @@ server <- function(input, output, session) {
   })
   
   output$text_village_selected <- renderText({
+    req(accesAutorise())
     if(!is.null(selected_village())){
       nom <- shape_village_belo %>%
         filter(id == selected_village()) %>%
@@ -124,10 +159,76 @@ server <- function(input, output, session) {
   })
   
   output$indicateurs <- renderText({
+    req(accesAutorise())
       paste(input$indicateurs)
   })
   
+  output$acces_refuse <- renderUI({
+    if(!accesAutorise()){
+      absolutePanel(id = "denied", class = "panel panel-primary",
+                    style = "border: none;
+                 box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                 background: linear-gradient(135deg, #ff6a6a 0%, #ff0000 100%);;
+                 border-radius: 20px;
+                 padding: 0;
+                 overflow: hidden;
+                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                 pointer-events: auto;
+                 animation: fadeIn 0.6s ease-out;",
+                    top = 120, left = "50%", height = "auto", width = '500px', 
+                    fixed = TRUE,
+                    
+                    div(style = "padding: 40px 30px; text-align: center; color: white;",
+                        
+                        # Icône d'alerte
+                        div(style = "font-size: 80px; margin-bottom: 20px;",
+                            HTML("&#x26A0;")
+                        ),
+                        
+                        # Titre principal
+                        h3(style = "margin: 0 0 15px 0;
+                       font-size: 28px;
+                       font-weight: 700;
+                       text-shadow: 0 2px 4px rgba(0,0,0,0.3);",
+                           "Accès refusé"
+                        ),
+                        
+                        # Message détaillé
+                        h4(style = "margin: 0 0 25px 0;
+                       font-size: 16px;
+                       font-weight: 400;
+                       line-height: 1.5;
+                       opacity: 0.9;",
+                           "Vous n'avez pas l'autorisation nécessaire pour visualiser les résultats des données."
+                        ),
+                        
+                        # Instructions
+                        p(style = "margin: 0 0 30px 0;
+                      font-size: 14px;
+                      background: rgba(255,255,255,0.1);
+                      padding: 15px;
+                      border-radius: 10px;
+                      border-left: 4px solid rgba(255,255,255,0.5);",
+                          "Veuillez contacter l'administrateur système pour obtenir les droits d'accès appropriés."
+                        )
+                    ),
+                    
+                    # Style CSS intégré pour l'animation
+                    tags$style(HTML("
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translate(-50%, -20px) scale(0.95); }
+                to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+            }
+            #denied {
+                transform: translateX(-50%);
+            }
+        "))
+      )
+    }
+  })
+  
   output$legende <- renderText({
+    req(accesAutorise())
     if(!is.null(selected_village())){
       nom <- shape_village_belo %>%
         filter(id == selected_village()) %>%
@@ -141,14 +242,14 @@ server <- function(input, output, session) {
       paste(" La figure représente la proportion de pêcheurs de ", nom , " impliqués dans chaque filière (Chevaquine, Crabe, Crevette, Gros poissons, Petit poissons ou Courbine) ")
     }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
       paste(" La figure représente la proportion de pêcheurs de ", nom , " impliqués dans chaque technique () ")
+    }else if(input$indicateurs == "Autres ressources de mangrove exploitées"){
+      paste("La figure représente la proposition de pêcheurs de ", nom , " exploitant une autre ressource de mangrove que la pêche des poissons et des crevettes.")
     }
-    
-    
     
   })
   
   output$result_map_click <- renderPlotly({
-    
+    req(accesAutorise())
       data_func <- data_selected_village()
       
       data_avec_total <- data_func%>%
@@ -215,6 +316,17 @@ server <- function(input, output, session) {
                   nb_pecheur = sum(nb_pecheur_secteur, na.rm = TRUE)
                 )
             )
+        }else if(input$indicateurs == "Autres ressources de mangrove exploitées"){
+          data_avec_total <- data_avec_total %>%
+            summarise(
+              data_avec_total <- data_avec_total %>%
+                summarise(
+                  paletuvier = sum(paletuvier, na.rm = TRUE),
+                  miel = sum(miel, na.rm = TRUE),
+                  coquillage = sum(coquillage, na.rm = TRUE),
+                  nb_pecheur = sum(nb_pecheur_secteur, na.rm = TRUE)
+                )
+            )
         }
       }
       if(input$indicateurs == "Démographie de la communauté des pêcheurs"){
@@ -232,6 +344,10 @@ server <- function(input, output, session) {
       }else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
         df_long <- data_avec_total %>%
           select(`filet maillant`, `filet moustiquaire`, `ligne à la main`, palangre,balance,crochet,senne,raquette,casier) %>%
+          pivot_longer(everything(), names_to = "categorie", values_to = "nombre")
+      }else if(input$indicateurs == "Autres ressources de mangrove exploitées"){
+        df_long <- data_avec_total %>%
+          select(paletuvier, miel, coquillage) %>%
           pivot_longer(everything(), names_to = "categorie", values_to = "nombre")
       }
     
@@ -267,6 +383,9 @@ server <- function(input, output, session) {
         else if(input$indicateurs == "Proportions de pêcheurs enquêtés par techniques de pêches"){
           xaxis<-"Techniques"
           color<-'#873e23'
+        }else if(input$indicateurs == "Autres ressources de mangrove exploitées"){
+          xaxis<-"Ressources de mangrove"
+          color<-'#416b18'
         }
         total <- data_avec_total$nb_pecheur
         df_long <- df_long %>%
@@ -335,9 +454,5 @@ server <- function(input, output, session) {
   })
   
   # ===== NETTOYAGE =====
-  onStop(function() {
-    if (DBI::dbIsValid(con)) {
-      DBI::dbDisconnect(con)
-    }
-  })
+  
 }
